@@ -108,7 +108,7 @@ const ElectionDetailsPage = () => {
                 <p className="text-gray-600 text-center">{candidate.manifesto}</p>
                 <div className="mt-4 text-center">
                   <p className="font-bold text-lg">Votes: {candidate.votesCount}</p>
-                  <p className="text-sm text-gray-500">Founded: {candidate.foundedYear}</p>
+                  {/* <p className="text-sm text-gray-500">Founded: {candidate.foundedYear}</p> */}
                 </div>
               </div>
             ))}

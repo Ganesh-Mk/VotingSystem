@@ -160,7 +160,7 @@ const CreateElectionPage = () => {
               name="description"
               value={electionDetails.description}
               onChange={handleElectionDetailsChange}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-gray-500 p-2"
+              className="block w-full rounded-mdshadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-gray-500 p-2"
             />
           </div>
 
@@ -239,7 +239,7 @@ const CreateElectionPage = () => {
               value={electionDetails.image || ''}
               onChange={handleElectionDetailsChange}
               placeholder="https://example.com/image.jpg"
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-gray-500 p-2"
+              className="block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-gray-500 p-2"
             />
           </div>
         </motion.form>

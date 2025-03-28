@@ -264,7 +264,7 @@ const ElectionCard = ({ election }) => {
       <div className="relative w-full h-32 mb-4 rounded-xl overflow-hidden">
         <img
           src={election.image || "/placeholder-election.jpg"}
-          alt={election.title}
+          alt={election.title || "Election Image"}
           layout="fill"
           objectFit="cover"
           className="group-hover:scale-105 transition-transform duration-300"
@@ -272,18 +272,20 @@ const ElectionCard = ({ election }) => {
       </div>
 
       <h3 className="text-xl font-semibold text-gray-900 mb-3">
-        {election.title}
+        {election.title || 'Untitled Election'}
       </h3>
-      <p className="text-gray-600 mb-4 flex-grow">{election.description}</p>
+      <p className="text-gray-600 mb-4 flex-grow line-clamp-4 h-[4.5rem]">
+        {election.description || 'No description available.'}
+      </p>
 
       <div className="mb-4">
         <h4 className="text-md font-semibold text-emerald-600 mb-2">Top Candidates</h4>
-        <div className="flex space-x-2">
-          {sortedCandidates.slice(0, 3).map((candidate) => (
+        <div className="flex space-x-2 h-16">
+          {(sortedCandidates.length > 0 ? sortedCandidates.slice(0, 3) : [{ name: 'N/A' }, { name: 'N/A' }, { name: 'N/A' }]).map((candidate, index) => (
             <div
-              key={candidate._id}
+              key={candidate._id || index}
               className="flex flex-col items-center"
-              title={`${candidate.name} - ${candidate.partyName}`}
+              title={`${candidate.name} - ${candidate.partyName || 'Unknown Party'}`}
             >
               <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center">
                 {candidate.logo ? (
@@ -296,12 +298,12 @@ const ElectionCard = ({ election }) => {
                   />
                 ) : (
                   <span className="text-emerald-600 font-bold text-sm">
-                    {candidate.name.charAt(0)}
+                    {candidate.name ? candidate.name.charAt(0) : '?'}
                   </span>
                 )}
               </div>
               <span className="text-xs text-gray-600 mt-1">
-                {totalVotes > 0
+                {totalVotes > 0 && candidate.votesCount
                   ? ((candidate.votesCount / totalVotes) * 100).toFixed(1)
                   : '0.0'}%
               </span>
@@ -312,7 +314,7 @@ const ElectionCard = ({ election }) => {
 
       <div className="mt-auto flex justify-between text-sm text-gray-500">
         <div>
-          <span className="font-medium text-emerald-600">Location:</span> {election.location}
+          <span className="font-medium text-emerald-600">Location:</span> {election.location || 'Not Specified'}
         </div>
         <div>
           <span className="font-medium text-emerald-600">Date:</span>{" "}
@@ -324,5 +326,6 @@ const ElectionCard = ({ election }) => {
     </div>
   );
 };
+
 
 export default ElectionSection;

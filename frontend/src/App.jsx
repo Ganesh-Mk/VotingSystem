@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Research from "./pages/Research";
 import Elections from "./pages/Elections";
 import ElectionDetails from "./pages/ElectionDetails";
+import News from "./pages/News";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/elections/:id" element={<ElectionDetails />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/research" element={<Research />} />
+          <Route path="/news" element={<News />} />
         </Routes>
       </Router>
     </Provider>
