@@ -17,14 +17,6 @@ const CandidateForm = ({ onAddCandidate }) => {
     }));
   };
 
-  const handleLogoChange = (e) => {
-    const file = e.target.files[0];
-    setCandidate(prev => ({
-      ...prev,
-      logo: file
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -34,38 +26,16 @@ const CandidateForm = ({ onAddCandidate }) => {
       return;
     }
 
-    // Convert file to base64 if logo exists
-    if (candidate.logo) {
-      const reader = new FileReader();
-      reader.readAsDataURL(candidate.logo);
-      reader.onloadend = () => {
-        const candidateWithBase64 = {
-          ...candidate,
-          logo: reader.result
-        };
-        onAddCandidate(candidateWithBase64);
-        // Reset form
-        setCandidate({
-          name: '',
-          partyName: '',
-          logo: null,
-          manifesto: '',
-          foundedYear: ''
-        });
-        e.target.reset();
-      };
-    } else {
-      onAddCandidate(candidate);
-      // Reset form
-      setCandidate({
-        name: '',
-        partyName: '',
-        logo: null,
-        manifesto: '',
-        foundedYear: ''
-      });
-      e.target.reset();
-    }
+    onAddCandidate(candidate);
+    // Reset form
+    setCandidate({
+      name: '',
+      partyName: '',
+      logo: '',
+      manifesto: '',
+      foundedYear: ''
+    });
+    e.target.reset();
   };
 
   return (
@@ -78,7 +48,7 @@ const CandidateForm = ({ onAddCandidate }) => {
           value={candidate.name}
           onChange={handleChange}
           required
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  border border-gray-500 p-2"
         />
       </div>
 
@@ -90,18 +60,19 @@ const CandidateForm = ({ onAddCandidate }) => {
           value={candidate.partyName}
           onChange={handleChange}
           required
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  border border-gray-500 p-2"
         />
       </div>
 
       <div>
         <label className="block text-sm font-medium text-gray-700">Candidate Logo</label>
         <input
-          type="file"
+          type="url"
           name="logo"
-          accept="image/*"
-          onChange={handleLogoChange}
-          className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm file:font-semibold hover:file:bg-violet-100"
+          value={candidate.logo}
+          onChange={handleChange}
+          placeholder="https://example.com/logo.jpg"
+          className="mt-1 block w-full rounded-md  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  border border-gray-500 p-2"
         />
       </div>
 
@@ -111,7 +82,7 @@ const CandidateForm = ({ onAddCandidate }) => {
           name="manifesto"
           value={candidate.manifesto}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  border border-gray-500 p-2"
         />
       </div>
 
@@ -122,7 +93,7 @@ const CandidateForm = ({ onAddCandidate }) => {
           name="foundedYear"
           value={candidate.foundedYear}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50  border border-gray-500 p-2"
         />
       </div>
 

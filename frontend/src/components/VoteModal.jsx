@@ -1,14 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 import { submitVote } from '../services/api.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function VoteModal({ candidate, electionId, isOpen, onClose }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [voterId, setVoterId] = useState('');
   const [errors, setErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const voterIdInputRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Pre-fill name and email from localStorage when modal opens
@@ -21,6 +24,7 @@ export default function VoteModal({ candidate, electionId, isOpen, onClose }) {
     // Reset voter ID and errors when modal opens
     setVoterId('');
     setErrors({});
+    setIsSubmitted(false);
   }, [isOpen]);
 
   const handleInputChange = (setter) => (e) => {
@@ -71,16 +75,55 @@ export default function VoteModal({ candidate, electionId, isOpen, onClose }) {
       localStorage.setItem('user.votedElection', electionId);
       localStorage.setItem('user.votedCandidate', candidate._id);
 
-      alert('Vote submitted successfully!');
-      onClose();
+      // Show success modal
+      setIsSubmitted(true);
     } catch (error) {
       console.error('Failed to submit vote', error);
       alert(error.response?.data?.message || 'Failed to submit vote');
     }
   };
 
+  const handleSuccessClose = () => {
+    navigate('/');
+  };
+
   if (!isOpen) return null;
 
+  // Success Modal Component
+  if (isSubmitted) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="bg-white rounded-xl shadow-2xl w-96 p-6 text-center animate-bounce-in">
+          <div className="flex justify-center mb-4">
+            <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center animate-pulse">
+              <Check size={64} color="white" strokeWidth={3} />
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-bold mb-2 text-gray-900">
+            Vote Submitted Successfully!
+          </h2>
+
+          <p className="text-gray-600 mb-4">
+            Thank you for participating in the election.
+          </p>
+
+          <p className="text-sm text-gray-500 mb-4">
+            You voted for <span className="font-semibold">{candidate.name}</span>
+          </p>
+
+          <button
+            onClick={handleSuccessClose}
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 rounded-full hover:opacity-90 transition-opacity"
+          >
+            Return to Home
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Original Vote Modal
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-xl shadow-2xl w-96 p-6 relative">

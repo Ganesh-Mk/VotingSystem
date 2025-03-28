@@ -44,6 +44,7 @@ export default function ElectionDetails() {
     const loadElectionDetails = async () => {
       try {
         const data = await fetchElectionById(electionId);
+        console.log(data)
         setElection(data);
         setLoading(false);
       } catch (error) {
@@ -129,15 +130,6 @@ export default function ElectionDetails() {
                   <p className="text-gray-600 line-clamp-3">
                     {candidate.manifesto}
                   </p>
-                </div>
-
-                <div className="mb-6 grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="text-sm text-gray-500">Party Founded</span>
-                    <p className="font-medium text-gray-800">
-                      {candidate.foundedYear}
-                    </p>
-                  </div>
                 </div>
 
                 <button

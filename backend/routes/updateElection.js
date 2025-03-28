@@ -31,7 +31,8 @@ router.put('/update-election/:id', async (req, res) => {
           {
             name: candidateData.name,
             logo: candidateData.logo,
-            partyName: candidateData.partyName
+            partyName: candidateData.partyName,
+            manifesto: candidateData.manifesto // Added manifesto
           },
           { new: true }
         );
@@ -40,7 +41,8 @@ router.put('/update-election/:id', async (req, res) => {
         return await Candidate.create({
           name: candidateData.name,
           logo: candidateData.logo,
-          partyName: candidateData.partyName
+          partyName: candidateData.partyName,
+          manifesto: candidateData.manifesto // Added manifesto
         });
       }
     });
