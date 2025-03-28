@@ -23,8 +23,9 @@ const Login = () => {
     const queryParams = new URLSearchParams(location.search);
     const userId = queryParams.get("userId");
 
+
+
     if (userId) {
-      // Store userId in localStorage
       localStorage.setItem("userId", userId);
       dispatch(login());
       localStorage.setItem("isLogin", true);

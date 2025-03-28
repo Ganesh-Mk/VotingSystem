@@ -7,7 +7,6 @@ router.post("/signup", async (req, res) => {
   const { fullName, email, password } = req.body;
 
   try {
-    // Simple validation
     if (!fullName || !email || !password) {
       return res
         .status(400)
