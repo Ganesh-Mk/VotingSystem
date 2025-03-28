@@ -27,6 +27,8 @@ const userSchema = new mongoose.Schema({
     default:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png ",
   },
+  votedElection: { type: mongoose.Schema.Types.ObjectId, ref: "Election", default: null },
+  votedCandidate: { type: mongoose.Schema.Types.ObjectId, ref: "Candidate", default: null },
   createdAt: {
     type: Date,
     default: Date.now,

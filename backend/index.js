@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: "*",
   credentials: true
 }));
 app.use(express.json());
@@ -57,12 +57,26 @@ const signupRoute = require("./routes/signup");
 const loginRoute = require("./routes/login");
 const getUserRoute = require("./routes/getUser");
 const googleAuthRoute = require("./routes/googleAuth");
+const createElection = require("./routes/createElection");
+const updateElection = require("./routes/updateElection");
+const deleteElection = require("./routes/deleteElection");
+const getAllElection = require("./routes/getAllElection");
+const getElection = require("./routes/getElection");
 
 // User routes
 app.use(signupRoute);
 app.use(loginRoute);
 app.use(getAllUsersRoute);
 app.use(getUserRoute);
+
+// Election routes
+app.use(createElection);
+app.use(updateElection);
+app.use(deleteElection);
+app.use(getAllElection);
+app.use(getElection);
+
+
 app.use("/auth", googleAuthRoute); // Mount Google OAuth routes under /auth
 
 // Basic Route

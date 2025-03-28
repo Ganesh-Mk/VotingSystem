@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/userModel'); // Adjust path to your User model
+const User = require('../models/user'); // Adjust path to your User model
 
 // Get user details by userId (using query params)
 router.get("/user/:userId", async (req, res) => {
