@@ -108,6 +108,7 @@ const HeroSection = () => {
               variants={buttonVariants}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => window.location.href = '/elections'}
             >
               Explore Elections
               <ArrowRight

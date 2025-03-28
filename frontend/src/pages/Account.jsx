@@ -18,9 +18,7 @@ const Account = () => {
       const userId = localStorage.getItem("userId");
 
       try {
-        const response = await axios.get(`${BACKEND_URL}/user/${userId}`, {
-          withCredentials: true
-        });
+        const response = await axios.get(`${BACKEND_URL}/user/${userId}`);
 
         console.log(response)
 
@@ -74,17 +72,14 @@ const Account = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4">
+    <div className="min-h-screen bg-gray-100 py-8 px-4 mt-14">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
         <div className="flex flex-col items-center">
           <img
             src={user.image}
+            onError={(e) => { e.target.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"; }}
             alt={user.fullName}
             className="w-32 h-32 rounded-full object-cover mb-4"
-            onError={(e) => {
-              console.error('Image failed to load', e);
-              e.target.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png";
-            }}
           />
           <h1 className="text-2xl font-bold text-gray-800">{user.fullName}</h1>
           <p className="text-gray-600 mb-6">{user.email}</p>

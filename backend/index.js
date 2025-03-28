@@ -62,6 +62,7 @@ const updateElection = require("./routes/updateElection");
 const deleteElection = require("./routes/deleteElection");
 const getAllElection = require("./routes/getAllElection");
 const getElection = require("./routes/getElection");
+const vote = require("./routes/vote");
 
 // User routes
 app.use(signupRoute);
@@ -75,6 +76,7 @@ app.use(updateElection);
 app.use(deleteElection);
 app.use(getAllElection);
 app.use(getElection);
+app.use(vote);
 
 
 app.use("/auth", googleAuthRoute); // Mount Google OAuth routes under /auth

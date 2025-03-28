@@ -26,9 +26,13 @@ const Signup = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const userId = queryParams.get("userId");
+    const fullName = queryParams.get("fullName");
+    const email = queryParams.get("email");
 
     if (userId) {
       localStorage.setItem("userId", userId);
+      localStorage.setItem("userName", fullName);
+      localStorage.setItem("userEmail", email);
       dispatch(login());
       localStorage.setItem("isLogin", true);
       navigate("/");
@@ -71,8 +75,9 @@ const Signup = () => {
       const response = await axios.post(`${BACKEND_URL}/signup`, formattedData);
 
       if (response.status === 201) {
-        // Directly log in the user after successful signup
         localStorage.setItem("userId", response.data.user._id);
+        localStorage.setItem('userName', response.data.user.fullName);
+        localStorage.setItem('userEmail', response.data.user.email);
         dispatch(login());
         localStorage.setItem("isLogin", true);
 

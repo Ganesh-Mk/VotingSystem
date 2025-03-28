@@ -63,3 +63,17 @@ export const deleteElection = async (id) => {
     throw error;
   }
 };
+
+export const submitVote = async (voteData) => {
+  try {
+    const response = await axios.post(`${BACKEND_URL}/vote`, voteData, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('user.token')}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error submitting vote:', error);
+    throw error;
+  }
+};

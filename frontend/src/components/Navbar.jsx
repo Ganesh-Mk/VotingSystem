@@ -20,7 +20,7 @@ const Navbar = () => {
             <div className="flex-shrink-0 ml-2">
               <Link to="/" className="text-2xl font-bold">
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  Voting
+                  Elections
                 </span>
                 <span className="bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
                   System
@@ -31,7 +31,7 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               <NavLink to="/">Home</NavLink>
-              <NavLink to="/voting">Voting</NavLink>
+              <NavLink to="/elections">Elections</NavLink>
               <NavLink to="/news">News</NavLink>
               <NavLink to="/research">Research</NavLink>
             </div>
@@ -92,8 +92,8 @@ const Navbar = () => {
               <MobileNavLink to="/" icon="🏠">
                 Home
               </MobileNavLink>
-              <MobileNavLink to="/voting" icon="🗳️">
-                Voting
+              <MobileNavLink to="/Elections" icon="🗳️">
+                elections
               </MobileNavLink>
               <MobileNavLink to="/news" icon="📰">
                 News
