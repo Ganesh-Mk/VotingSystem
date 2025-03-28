@@ -75,9 +75,12 @@ export default function Elections() {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-5xl font-bold text-gray-900 mb-6"
+            className="text-5xl font-bold text-gray-900 mb-2"
           >
-            Ongoing Elections
+            <span className="inline-block">Ongoing </span>
+            <span className="inline-block font-bold tracking-tight bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent px-4 leading-relaxed py-1">
+              Elections
+            </span>
           </motion.h1>
           <motion.p
             variants={itemVariants}

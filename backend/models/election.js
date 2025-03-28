@@ -8,6 +8,7 @@ const ElectionSchema = new mongoose.Schema({
   location: { type: String },
   startDate: { type: Date },
   endDate: { type: Date },
+  voterIds: [{ type: String }],
   candidates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Candidate" }]
 });
 

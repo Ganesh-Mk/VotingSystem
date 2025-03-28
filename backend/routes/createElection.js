@@ -16,6 +16,16 @@ router.post('/create-election', async (req, res) => {
       candidates
     } = req.body;
 
+    let voterIds = [];
+    const generateVoterIds = function () {
+      for (let i = 0; i < 10; i++) {
+        const voterId = Math.random().toString(36).substring(2, 12);
+        voterIds.push(voterId);
+      }
+    };
+    generateVoterIds();
+    console.log(voterIds)
+
     // Create candidates first
     const createdCandidates = await Candidate.create(candidates);
 
@@ -27,6 +37,7 @@ router.post('/create-election', async (req, res) => {
       startDate: new Date(startDate),
       endDate: new Date(endDate),
       image,
+      voterIds: voterIds,
       candidates: createdCandidates.map(candidate => candidate._id)
     });
 

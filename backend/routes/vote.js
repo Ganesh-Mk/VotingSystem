@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
@@ -20,11 +19,6 @@ router.post('/vote', async (req, res) => {
       return res.status(400).json({ message: 'You have already voted in this election' });
     }
 
-    // Validate voter ID (you might want to add more robust validation)
-    if (voterId.length < 5) {
-      return res.status(400).json({ message: 'Invalid Voter ID' });
-    }
-
     // Find the election and candidate
     const election = await Election.findById(electionId);
     const candidate = await Candidate.findById(candidateId);
@@ -33,9 +27,19 @@ router.post('/vote', async (req, res) => {
       return res.status(404).json({ message: 'Election or Candidate not found' });
     }
 
+    // Check if voter ID exists in the election's voter IDs
+    const voterIdIndex = election.voterIds.indexOf(voterId);
+    if (voterIdIndex === -1) {
+      return res.status(400).json({ message: 'Invalid Voter ID' });
+    }
+
     // Increment candidate votes
     candidate.votesCount = (candidate.votesCount || 0) + 1;
     await candidate.save();
+
+    // Remove the used voter ID from the election
+    election.voterIds.splice(voterIdIndex, 1);
+    await election.save();
 
     // Update user to mark as voted
     user.votedElection = electionId;

@@ -77,3 +77,20 @@ export const submitVote = async (voteData) => {
     throw error;
   }
 };
+
+export const getAiResponse = async (userInput) => {
+  try {
+    const response = await axios.post(`${BACKEND_URL}/getAiResponse`,
+      { userInput },
+      {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('user.token')}`
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error getting AI response:', error);
+    throw error;
+  }
+};

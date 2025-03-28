@@ -64,6 +64,7 @@ const getAllElection = require("./routes/getAllElection");
 const getElection = require("./routes/getElection");
 const vote = require("./routes/vote");
 const deleteUser = require("./routes/deleteUser");
+const getAiResponse = require("./routes/getAiResponse");
 
 // User routes
 app.use(signupRoute);
@@ -79,6 +80,7 @@ app.use(getAllElection);
 app.use(getElection);
 app.use(vote);
 app.use(deleteUser);
+app.use(getAiResponse);
 
 
 app.use("/auth", googleAuthRoute); // Mount Google OAuth routes under /auth

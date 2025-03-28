@@ -302,11 +302,11 @@ const ElectionCard = ({ election }) => {
                   </span>
                 )}
               </div>
-              <span className="text-xs text-gray-600 mt-1">
+              {/* <span className="text-xs text-gray-600 mt-1">
                 {totalVotes > 0 && candidate.votesCount
                   ? ((candidate.votesCount / totalVotes) * 100).toFixed(1)
                   : '0.0'}%
-              </span>
+              </span> */}
             </div>
           ))}
         </div>
