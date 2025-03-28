@@ -7,6 +7,7 @@ import AccountPage from "./pages/Account";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import Navbar from "./components/Navbar";
+import Research from "./pages/Research";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/account" element={<AccountPage />} />
+          <Route path="/research" element={<Research />} />
         </Routes>
       </Router>
     </Provider>
