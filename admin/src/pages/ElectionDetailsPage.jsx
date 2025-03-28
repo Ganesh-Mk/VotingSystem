@@ -27,6 +27,7 @@ const ElectionDetailsPage = () => {
       try {
         const data = await fetchElectionById(id);
         setElection(data);
+        console.log(data)
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -104,6 +105,7 @@ const ElectionDetailsPage = () => {
                 )}
                 <h3 className="text-xl font-medium text-center">{candidate.name}</h3>
                 <p className="text-gray-600 text-center">{candidate.partyName}</p>
+                <p className="text-gray-600 text-center">{candidate.manifesto}</p>
                 <div className="mt-4 text-center">
                   <p className="font-bold text-lg">Votes: {candidate.votesCount}</p>
                   <p className="text-sm text-gray-500">Founded: {candidate.foundedYear}</p>
