@@ -71,9 +71,14 @@ const Signup = () => {
       const response = await axios.post(`${BACKEND_URL}/signup`, formattedData);
 
       if (response.status === 201) {
+        // Directly log in the user after successful signup
+        localStorage.setItem("userId", response.data.user._id);
+        dispatch(login());
+        localStorage.setItem("isLogin", true);
+
         setSuccess(true);
         setTimeout(() => {
-          window.location.href = "/login";
+          navigate("/"); // Redirect to home page instead of login page
         }, 2000);
       }
     } catch (err) {

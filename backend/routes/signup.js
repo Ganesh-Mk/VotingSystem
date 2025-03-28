@@ -38,14 +38,19 @@ router.post("/signup", async (req, res) => {
     const savedUser = await newUser.save();
 
     // Return user data without password
-    const userToReturn = {
+    const userResponse = {
       _id: savedUser._id,
       fullName: savedUser.fullName,
       email: savedUser.email,
-      createdAt: savedUser.createdAt,
+      createdAt: savedUser.createdAt
     };
 
-    res.status(201).json(userToReturn);
+    // Modify the response to match login route structure
+    res.status(201).json({
+      message: "Signup successful",
+      user: userResponse
+    });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error during registration" });
